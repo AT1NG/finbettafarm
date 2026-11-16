@@ -26,8 +26,12 @@
   .jar-water { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, #CFE3EE 0%, #A9CCE0 100%); transition: height 900ms cubic-bezier(.2,.8,.2,1); }
   .jar-water::before { content: ''; position: absolute; top: -4px; left: 0; right: 0; height: 8px; background: #DCEBF3; border-radius: 50%; }
   .jar-fish { position: absolute; left: 50%; bottom: 24%; width: 62%; transform: translateX(-50%); }
+  .jar-photo { position: absolute; left: 0; right: 0; top: 0.9rem; width: 100%; height: calc(100% - 0.9rem); object-fit: cover; }
+  .jar-water-tint { z-index: 1; opacity: 0.4; mix-blend-mode: multiply; }
+  .jar-level { z-index: 2; }
+  .jar-empty .jar-photo { filter: grayscale(1); opacity: 0.45; }
   .jar-empty .jar-fish { opacity: 0.18; filter: grayscale(1); }
-  .jar-level { position: absolute; right: 0.6rem; top: 1.4rem; font-size: 0.75rem; font-weight: 700; color: #2C5470; }
+  .jar-level { background: rgba(255,255,255,.85); padding: 0 .4rem; border-radius: 999px; position: absolute; right: 0.6rem; top: 1.4rem; font-size: 0.75rem; font-weight: 700; color: #2C5470; }
 
   .chip { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-semibold; }
   .chip::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 999px; background: currentColor; }

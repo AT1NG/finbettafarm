@@ -39,8 +39,10 @@
         : 'Halo Fin Betta Farm, saya mau pesan ' + i.nama + ' (' + rupiah(i.harga) + '). Apakah masih ada?';
       return '<article class="flex flex-col">' +
         '<div class="jar' + (habis ? ' jar-empty' : '') + '">' +
-          '<div class="jar-water" style="height:' + (habis ? 8 : level) + '%"></div>' +
-          fishSvg(i.warna || '#D9567F') +
+          '<div class="jar-water' + (i.foto ? ' jar-water-tint' : '') + '" style="height:' + (habis ? 8 : level) + '%"></div>' +
+          (i.foto
+            ? '<img class="jar-photo" src="' + i.foto + '" alt="' + i.nama + '" loading="lazy">'
+            : fishSvg(i.warna || '#D9567F')) +
           '<span class="jar-level">' + (habis ? 'kosong' : i.stok + ' ekor') + '</span>' +
         '</div>' +
         '<div class="mt-4 flex flex-wrap items-start justify-between gap-x-3 gap-y-1">' +
@@ -94,7 +96,7 @@
     var head = rows.shift().map(function (h) { return h.trim().toLowerCase(); });
     return rows.filter(function (r) { return r.join('').trim(); }).map(function (r) {
       var o = {}; head.forEach(function (h, k) { o[h] = (r[k] || '').trim(); });
-      return { nama: o.nama, jenis: o.jenis, warna: o.warna, harga: parseInt(String(o.harga).replace(/\D/g, ''), 10) || 0, stok: parseInt(o.stok, 10) || 0 };
+      return { nama: o.nama, jenis: o.jenis, warna: o.warna, foto: o.foto, harga: parseInt(String(o.harga).replace(/\D/g, ''), 10) || 0, stok: parseInt(o.stok, 10) || 0 };
     }).filter(function (o) { return o.nama; });
   }
 
