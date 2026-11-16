@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fin Betta Farm | Jual Ikan Cupang Jatinangor &amp; Bandung, Cek Stok Hari Ini</title>
-  <meta name="description" content="Jual ikan cupang halfmoon, plakat, giant, dan crowntail dari Jatinangor. Harga Rp15.000 sampai Rp50.000, cek stok terbaru lalu pesan lewat WhatsApp. Melayani Kota Bandung dan sekitarnya.">
+  <title>Fin Betta Farm | Jual Ikan Cupang Jatinangor &amp; Bandung</title>
+  <meta name="description" content="Jual ikan cupang halfmoon, plakat, giant, dan crowntail dari Jatinangor. Cek stok dan harga hari ini, lalu pesan lewat WhatsApp. Melayani Bandung.">
   <link rel="canonical" href="https://finbettafarm.vercel.app/">
   <meta name="theme-color" content="#13324A">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Fin Betta Farm | Ikan Cupang Jatinangor">
   <meta property="og:description" content="Cek stok cupang hari ini dan pesan lewat WhatsApp. Melayani Kota Bandung dan sekitarnya.">
   <meta property="og:url" content="https://finbettafarm.vercel.app/">
+  <meta property="og:image" content="https://finbettafarm.vercel.app/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;600;700&display=swap">
+  <link rel="preload" href="bricolage-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="figtree-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -41,10 +44,10 @@
         Fin Betta Farm
       </a>
       <ul class="hidden items-center gap-7 text-sm font-semibold md:flex">
-        <li><a class="hover:text-sirip" href="#katalog">Stok</a></li>
-        <li><a class="hover:text-sirip" href="#cara-pesan">Cara pesan</a></li>
-        <li><a class="hover:text-sirip" href="#perawatan">Perawatan</a></li>
-        <li><a class="hover:text-sirip" href="#faq">Tanya jawab</a></li>
+        <li><a class="tap hover:text-sirip" href="#katalog">Stok</a></li>
+        <li><a class="tap hover:text-sirip" href="#cara-pesan">Cara pesan</a></li>
+        <li><a class="tap hover:text-sirip" href="#perawatan">Perawatan</a></li>
+        <li><a class="tap hover:text-sirip" href="#faq">Tanya jawab</a></li>
       </ul>
       <a data-wa data-track="wa_nav" class="btn-wa px-4 py-2 text-sm" href="#">Chat WhatsApp</a>
     </nav>
@@ -54,17 +57,18 @@
     <!-- Hero -->
     <section class="mx-auto grid max-w-content items-end gap-12 px-5 pb-16 pt-12 md:grid-cols-[1.1fr_1fr] md:pt-20">
       <div>
-        <h1 class="text-[2.6rem] font-extrabold leading-[1.05] sm:text-6xl">Cupang sehat dari Jatinangor. Cek stoknya dulu, baru chat.</h1>
+        <h1 class="text-[2.6rem] font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">Cupang sehat dari Jatinangor. Cek stoknya dulu, baru chat.</h1>
         <p class="mt-6 max-w-xl text-lg leading-relaxed text-laut/80">Fin Betta Farm membudidayakan cupang halfmoon, plakat, giant, dan crowntail. Lihat varian yang masih ada beserta harganya, lalu pesan lewat WhatsApp. Kami melayani Kota Bandung dan sekitarnya.</p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#katalog" class="btn bg-sirip text-white hover:bg-[#C2446C]" data-track="cta_hero_stok">Lihat stok hari ini</a>
+          <a href="#katalog" class="btn bg-sirip text-white hover:bg-[#A8325A]" data-track="cta_hero_stok">Lihat stok hari ini</a>
           <a data-wa data-track="wa_hero" href="#" class="btn-ghost">Chat WhatsApp</a>
         </div>
         <dl class="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t-2 border-laut/10 pt-6 text-sm">
-          <div><dt class="text-laut/60">Harga per ekor</dt><dd class="mt-1 font-bold">Rp15rb sampai Rp50rb</dd></div>
-          <div><dt class="text-laut/60">Lokasi budidaya</dt><dd class="mt-1 font-bold">Jatinangor</dd></div>
-          <div><dt class="text-laut/60">Area layanan</dt><dd class="mt-1 font-bold">Bandung dan sekitarnya</dd></div>
+          <div><dt class="text-laut/75">Harga per ekor</dt><dd class="mt-1 font-bold">Rp15rb sampai Rp50rb</dd></div>
+          <div><dt class="text-laut/75">Lokasi budidaya</dt><dd class="mt-1 font-bold">Jatinangor</dd></div>
+          <div><dt class="text-laut/75">Area layanan</dt><dd class="mt-1 font-bold">Bandung dan sekitarnya</dd></div>
         </dl>
+        <p id="garansi" class="mt-6 max-w-lg rounded-2xl border-2 border-laut/15 bg-white px-4 py-3 text-sm font-semibold" hidden></p>
       </div>
       <!-- Rak toples -->
       <div class="relative" aria-hidden="true">
@@ -88,12 +92,21 @@
           </div>
           <div class="text-sm md:text-right">
             <p id="stok-ringkas" class="font-bold"></p>
-            <p id="stok-sumber" class="text-laut/60"></p>
+            <p id="stok-sumber" class="text-laut/75"></p>
           </div>
         </div>
         <div id="katalog-filter" class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Saring jenis cupang"></div>
         <div id="katalog-grid" class="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 lg:grid-cols-4" aria-live="polite"></div>
-        <p class="mt-10 text-sm text-laut/60">Foto pada katalog adalah ilustrasi warna. Minta video ikan aslinya lewat WhatsApp sebelum membayar.</p>
+        <p class="mt-10 text-sm text-laut/75">Foto pada katalog adalah ilustrasi warna. Minta video ikan aslinya lewat WhatsApp sebelum membayar.</p>
+      </div>
+    </section>
+
+    <!-- Testimoni: tampil hanya jika tab Testimoni di Sheet berisi data -->
+    <section id="testimoni" class="py-16 md:py-20" hidden>
+      <div class="mx-auto max-w-content px-5">
+        <h2 class="text-4xl font-extrabold">Kata pembeli</h2>
+        <p class="mt-3 max-w-2xl text-laut/80">Ulasan dari pembeli Fin Betta Farm, ditulis apa adanya.</p>
+        <div id="testimoni-list" class="mt-10 grid gap-6 md:grid-cols-3"></div>
       </div>
     </section>
 
@@ -159,7 +172,7 @@
         <div>
           <h2 class="text-4xl font-extrabold">Pesan sekarang</h2>
           <p class="mt-3 text-laut/80">Isi data singkat ini. Saat kamu menekan tombol, WhatsApp akan terbuka dengan pesan pesanan yang sudah lengkap. Tinggal kirim.</p>
-          <p class="mt-6 text-sm text-laut/70">Lebih suka chat langsung? <a data-wa data-track="wa_form_alt" href="#" class="font-semibold underline underline-offset-4">Buka WhatsApp</a></p>
+          <p class="mt-6 text-sm text-laut/70">Lebih suka chat langsung? <a data-wa data-track="wa_form_alt" href="#" class="tap font-semibold underline underline-offset-4">Buka WhatsApp</a></p>
         </div>
         <form id="form-pesan" class="grid gap-4 rounded-3xl bg-white p-6 sm:grid-cols-2 sm:p-8" novalidate>
           <label class="sm:col-span-2"><span class="mb-1.5 block text-sm font-semibold">Nama</span><input class="field" name="nama" autocomplete="name" placeholder="Nama kamu" required></label>
@@ -192,10 +205,10 @@
         <p class="font-display text-2xl font-extrabold">Fin Betta Farm</p>
         <p class="mt-2 max-w-sm text-white/70">Budidaya ikan cupang di Jatinangor, Kabupaten Sumedang. Melayani Kota Bandung dan sekitarnya.</p>
       </div>
-      <ul class="space-y-2 font-semibold">
-        <li><a data-wa data-track="wa_footer" href="#" class="hover:text-siripmuda">WhatsApp</a></li>
-        <li><a data-ig href="#" target="_blank" rel="noopener" class="hover:text-siripmuda">Instagram @finbetta.official</a></li>
-        <li><a data-maps href="#" target="_blank" rel="noopener" class="hover:text-siripmuda">Lokasi di Google Maps</a></li>
+      <ul class="font-semibold">
+        <li><a data-wa data-track="wa_footer" href="#" class="tap hover:text-siripmuda">WhatsApp</a></li>
+        <li><a data-ig href="#" target="_blank" rel="noopener" class="tap hover:text-siripmuda">Instagram @finbetta.official</a></li>
+        <li><a data-maps href="#" target="_blank" rel="noopener" class="tap hover:text-siripmuda">Lokasi di Google Maps</a></li>
       </ul>
     </div>
     <p class="mx-auto mt-10 max-w-content px-5 text-sm text-white/50">&copy; <span id="tahun"></span> Fin Betta Farm</p>

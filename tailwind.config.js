@@ -6,7 +6,7 @@ module.exports = {
         air: '#EEF4F7',
         laut: '#13324A',
         lautmuda: '#2C5470',
-        sirip: '#D9567F',
+        sirip: '#B83A63',
         siripmuda: '#F6D3DF',
         lavender: '#B9A7E0',
         ketapang: '#8A5A2B',

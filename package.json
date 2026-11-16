@@ -5,6 +5,8 @@
     "build": "sh build.sh"
   },
   "devDependencies": {
+    "@fontsource/bricolage-grotesque": "^5.2.10",
+    "@fontsource/figtree": "^5.2.10",
     "tailwindcss": "^3.4.19"
   }
 }

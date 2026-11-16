@@ -12,6 +12,18 @@ window.FBF = {
   // Kalau kosong atau gagal dimuat, katalog memakai data cadangan di bawah.
   sheetCsv: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjQ0gPTWG01sly8ttTy6EvyUYT1HoFjwqmxJKTvGCgZoGB6R2glX-50cfDqzkiwEfsbxAYV1OniFZm/pub?gid=0&single=true&output=csv',
 
+  // Tab "Testimoni" di Google Sheets (kolom: nama, kota, isi). Kosongkan jika belum ada.
+  testimoniCsv: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjQ0gPTWG01sly8ttTy6EvyUYT1HoFjwqmxJKTvGCgZoGB6R2glX-50cfDqzkiwEfsbxAYV1OniFZm/pub?gid=1001&single=true&output=csv',
+
+  // Jaminan dari mitra, misalnya garansi ikan hidup sampai tujuan. Kosong = tidak ditampilkan.
+  garansi: '',
+
+  // ID pengukuran Google Analytics 4 (format G-XXXXXXX). Kosong = tracking mati.
+  ga4: 'G-NGJ83G1N66',
+
+  // Email penerima salinan pesanan dari formulir (lewat FormSubmit). Kosong = hanya WhatsApp.
+  formEmail: '',
+
   // Batas "sisa sedikit"
   stokSedikit: 2,
   // Jumlah stok yang dianggap toples penuh

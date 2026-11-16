@@ -1,4 +1,8 @@
-
+@font-face { font-family: 'Bricolage Grotesque'; font-weight: 700; font-display: swap; src: url('bricolage-700.woff2') format('woff2'); }
+@font-face { font-family: 'Bricolage Grotesque'; font-weight: 800; font-display: swap; src: url('bricolage-800.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 400; font-display: swap; src: url('figtree-400.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 600; font-display: swap; src: url('figtree-600.woff2') format('woff2'); }
+@font-face { font-family: 'Figtree'; font-weight: 700; font-display: swap; src: url('figtree-700.woff2') format('woff2'); }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +11,7 @@
   html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
   body { @apply bg-air text-laut font-body antialiased; }
   h1, h2, h3 { @apply font-display; letter-spacing: -0.02em; }
-  :focus-visible { outline: 3px solid #D9567F; outline-offset: 3px; border-radius: 6px; }
+  :focus-visible { outline: 3px solid #B83A63; outline-offset: 3px; border-radius: 6px; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -39,8 +43,9 @@
   .chip-low { @apply bg-[#FCEBD2] text-[#8A4B00]; }
   .chip-out { @apply bg-[#E8E8EC] text-[#55556A]; }
 
-  .filter-btn { @apply rounded-full border-2 border-laut/20 px-4 py-1.5 text-sm font-semibold text-laut transition-colors; }
+  .filter-btn { @apply inline-flex min-h-[44px] items-center rounded-full border-2 border-laut/20 px-4 py-1.5 text-sm font-semibold text-laut transition-colors; }
   .filter-btn[aria-pressed='true'] { @apply border-laut bg-laut text-white; }
 
+  .tap { @apply inline-flex min-h-[44px] items-center; }
   .field { @apply w-full rounded-xl border-2 border-laut/20 bg-white px-4 py-3 text-laut placeholder:text-laut/40 focus:border-laut focus:outline-none; }
 }
