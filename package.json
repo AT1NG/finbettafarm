@@ -1,0 +1,10 @@
+{
+  "name": "finbettafarm",
+  "private": true,
+  "scripts": {
+    "build": "sh build.sh"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

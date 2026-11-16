@@ -1,0 +1,42 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-air text-laut font-body antialiased; }
+  h1, h2, h3 { @apply font-display; letter-spacing: -0.02em; }
+  :focus-visible { outline: 3px solid #D9567F; outline-offset: 3px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold transition-colors; }
+  .btn-wa { @apply btn bg-laut text-white hover:bg-lautmuda; }
+  .btn-ghost { @apply btn border-2 border-laut text-laut hover:bg-white; }
+
+  /* Toples: wadah katalog. Tinggi air = jumlah stok. */
+  .jar { position: relative; height: 10rem; border: 3px solid #13324A; border-top: 0; border-radius: 0 0 2.25rem 2.25rem; background: #fff; overflow: hidden; }
+  .jar::before { content: ''; position: absolute; left: -3px; right: -3px; top: 0; height: 0.9rem; background: #13324A; border-radius: 0.35rem; }
+  @media (min-width: 640px) { .jar { height: 13rem; } }
+  .jar-water { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, #CFE3EE 0%, #A9CCE0 100%); transition: height 900ms cubic-bezier(.2,.8,.2,1); }
+  .jar-water::before { content: ''; position: absolute; top: -4px; left: 0; right: 0; height: 8px; background: #DCEBF3; border-radius: 50%; }
+  .jar-fish { position: absolute; left: 50%; bottom: 24%; width: 62%; transform: translateX(-50%); }
+  .jar-empty .jar-fish { opacity: 0.18; filter: grayscale(1); }
+  .jar-level { position: absolute; right: 0.6rem; top: 1.4rem; font-size: 0.75rem; font-weight: 700; color: #2C5470; }
+
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-semibold; }
+  .chip::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 999px; background: currentColor; }
+  .chip-ok { @apply bg-[#DDF2E6] text-[#1E6B42]; }
+  .chip-low { @apply bg-[#FCEBD2] text-[#8A4B00]; }
+  .chip-out { @apply bg-[#E8E8EC] text-[#55556A]; }
+
+  .filter-btn { @apply rounded-full border-2 border-laut/20 px-4 py-1.5 text-sm font-semibold text-laut transition-colors; }
+  .filter-btn[aria-pressed='true'] { @apply border-laut bg-laut text-white; }
+
+  .field { @apply w-full rounded-xl border-2 border-laut/20 bg-white px-4 py-3 text-laut placeholder:text-laut/40 focus:border-laut focus:outline-none; }
+}
