@@ -110,17 +110,59 @@
     renderFilters(); render(); fillSelect(); heroTag();
   }
 
+  // Rak putar hero: kartu foto ikan yang masih tersedia
+  var cf = { el: document.getElementById('cf'), list: [], aktif: 0, timer: null };
+  var diam = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function heroTag() {
-    var tag = document.getElementById('hero-tag');
-    if (!tag) return;
-    var h = items.filter(function (i) { return i.foto === tag.getAttribute('data-foto') && i.stok > 0; })[0];
-    if (!h) { tag.hidden = true; return; }
-    var s = status(h.stok);
-    tag.innerHTML = '<div><p class="font-bold leading-tight">' + esc(h.nama) + '</p>' +
-      '<p class="mt-0.5 text-sm text-laut/75">' + rupiah(h.harga) + ', sisa ' + h.stok + ' ekor</p></div>' +
-      '<a class="tap shrink-0 text-sm font-bold text-sirip underline underline-offset-4" data-track="wa_hero_tag" data-item="' + esc(h.nama) + '" target="_blank" rel="noopener" href="' + waLink('Halo Fin Betta Farm, saya mau pesan ' + h.nama + ' (' + rupiah(h.harga) + '). Apakah masih ada?') + '">Pesan</a>';
-    tag.hidden = false;
+    if (!cf.el) return;
+    var utama = '/foto/halfmoon-orange-dragon.webp';
+    var list = items.filter(function (i) { return i.foto && i.stok > 0; });
+    list.sort(function (a, b) { return (b.foto === utama) - (a.foto === utama); });
+    cf.list = list.slice(0, 9);
+    if (!cf.list.length) return;
+    cf.el.innerHTML = cf.list.map(function (i, k) {
+      return '<button type="button" class="cf-card" data-i="' + k + '" aria-label="Lihat ' + esc(i.nama) + '"><img src="' + esc(i.foto) + '" alt="' + esc(i.nama) + '" width="720" height="495"' + (k === 0 ? ' fetchpriority="high"' : ' loading="lazy"') + '></button>';
+    }).join('');
+    cf.aktif = 0; layout(); mulai();
   }
+  function layout() {
+    var n = cf.list.length, kartu = cf.el.querySelectorAll('.cf-card');
+    if (!kartu.length) return;
+    var w = kartu[0].offsetWidth;
+    kartu.forEach(function (c, k) {
+      var d = k - cf.aktif;
+      if (d > n / 2) d -= n; if (d < -n / 2) d += n;
+      var a = Math.abs(d), s = d < 0 ? -1 : 1;
+      var x = a === 0 ? 0 : s * (w * 0.62 + (a - 1) * w * 0.3);
+      var sc = a === 0 ? 1 : Math.max(0.4, 0.66 - (a - 1) * 0.1);
+      var rot = a === 0 ? 0 : -s * 38;
+      c.style.transform = 'translate(-50%,-50%) translateX(' + x + 'px) rotateY(' + rot + 'deg) scale(' + sc + ')';
+      c.style.zIndex = String(20 - a);
+      c.style.opacity = a > 3 ? '0' : String(1 - Math.max(0, a - 1) * 0.22);
+      c.style.filter = a === 0 ? 'none' : 'saturate(.85) brightness(.92)';
+      c.classList.toggle('is-active', a === 0);
+      c.tabIndex = a === 0 ? -1 : 0;
+    });
+    var h = cf.list[cf.aktif], tag = document.getElementById('hero-tag');
+    tag.innerHTML = '<p class="truncate font-bold">' + esc(h.nama) + '</p>' +
+      '<p class="mt-0.5 text-sm text-laut/75">' + rupiah(h.harga) + ', sisa ' + h.stok + ' ekor. ' +
+      '<a class="font-bold text-sirip underline underline-offset-4" data-track="wa_hero_tag" data-item="' + esc(h.nama) + '" target="_blank" rel="noopener" href="' + waLink('Halo Fin Betta Farm, saya mau pesan ' + h.nama + ' (' + rupiah(h.harga) + '). Apakah masih ada?') + '">Pesan</a></p>';
+  }
+  function geser(k) { var n = cf.list.length; cf.aktif = ((k % n) + n) % n; layout(); }
+  function mulai() { if (diam) return; clearInterval(cf.timer); cf.timer = setInterval(function () { geser(cf.aktif + 1); }, 4000); }
+  function henti() { clearInterval(cf.timer); }
+  if (cf.el) {
+    cf.el.addEventListener('click', function (e) { var c = e.target.closest('.cf-card'); if (c) { geser(+c.dataset.i); mulai(); } });
+    document.getElementById('cf-prev').addEventListener('click', function () { geser(cf.aktif - 1); mulai(); });
+    document.getElementById('cf-next').addEventListener('click', function () { geser(cf.aktif + 1); mulai(); });
+    cf.el.addEventListener('mouseenter', henti); cf.el.addEventListener('mouseleave', mulai);
+    var x0 = null;
+    cf.el.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
+    cf.el.addEventListener('pointerup', function (e) { if (x0 === null) return; var dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) { geser(cf.aktif + (dx < 0 ? 1 : -1)); mulai(); } });
+    window.addEventListener('resize', layout);
+    document.addEventListener('visibilitychange', function () { document.hidden ? henti() : mulai(); });
+  }
+
 
   function parseCsv(text) {
     var rows = [], row = [], cur = '', q = false;
