@@ -65,19 +65,21 @@
         : 'Halo Fin Betta Farm, saya mau pesan ' + i.nama + ' (' + rupiah(i.harga) + '). Apakah masih ada?';
       return '<article class="flex flex-col">' +
         '<div class="jar' + (habis ? ' jar-empty' : '') + '">' +
-          '<div class="jar-water' + (i.foto ? ' jar-water-tint' : '') + '" style="height:' + (habis ? 8 : level) + '%"></div>' +
           (i.foto
-            ? '<img class="jar-photo" src="' + esc(i.foto) + '" alt="' + esc(i.nama) + '" loading="lazy">'
+            ? '<img class="jar-photo" src="' + esc(i.foto) + '" alt="' + esc(i.nama) + '" loading="lazy" width="720" height="720">'
             : fishSvg(i.warna || '#D9567F')) +
+          '<div class="jar-water" style="height:' + (habis ? 6 : Math.round(level * 0.6)) + '%"></div>' +
           '<span class="jar-level">' + (habis ? 'kosong' : i.stok + ' ekor') + '</span>' +
         '</div>' +
-        '<div class="mt-4 flex flex-wrap items-start justify-between gap-x-3 gap-y-1">' +
-          '<div><h3 class="text-lg font-bold leading-tight">' + esc(i.nama) + '</h3>' +
-          '<p class="text-sm text-laut/70">' + esc(i.jenis) + '</p></div>' +
-          '<p class="font-display text-lg font-bold whitespace-nowrap">' + rupiah(i.harga) + '</p>' +
+        '<div class="mt-4">' +
+          '<p class="text-sm text-laut/70">' + esc(i.jenis) + '</p>' +
+          '<h3 class="mt-0.5 text-lg font-bold leading-snug">' + esc(i.nama) + '</h3>' +
+          '<div class="mt-2 flex flex-wrap items-center justify-between gap-2">' +
+            '<p class="font-display text-lg font-bold">' + rupiah(i.harga) + '</p>' +
+            '<span class="chip whitespace-nowrap ' + s.cls + '">' + s.label + '</span>' +
+          '</div>' +
         '</div>' +
-        '<div class="mt-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">' +
-          '<span class="chip whitespace-nowrap ' + s.cls + '">' + s.label + '</span>' +
+        '<div class="mt-2">' +
           '<a class="tap whitespace-nowrap text-sm font-semibold underline decoration-2 underline-offset-4 ' + (habis ? 'text-laut/70' : 'text-sirip') + '" target="_blank" rel="noopener" data-track="wa_katalog" data-item="' + esc(i.nama) + '" href="' + waLink(pesan) + '">' +
             (habis ? 'Tanya kapan ada' : 'Pesan lewat WhatsApp') + '</a>' +
         '</div></article>';
@@ -105,7 +107,19 @@
     var total = items.reduce(function (t, i) { return t + (i.stok > 0 ? 1 : 0); }, 0);
     document.getElementById('stok-ringkas').textContent = total + ' dari ' + items.length + ' varian tersedia';
     document.getElementById('stok-sumber').textContent = sumber;
-    renderFilters(); render(); fillSelect();
+    renderFilters(); render(); fillSelect(); heroTag();
+  }
+
+  function heroTag() {
+    var tag = document.getElementById('hero-tag');
+    if (!tag) return;
+    var h = items.filter(function (i) { return i.foto === tag.getAttribute('data-foto') && i.stok > 0; })[0];
+    if (!h) { tag.hidden = true; return; }
+    var s = status(h.stok);
+    tag.innerHTML = '<div><p class="font-bold leading-tight">' + esc(h.nama) + '</p>' +
+      '<p class="mt-0.5 text-sm text-laut/75">' + rupiah(h.harga) + ', sisa ' + h.stok + ' ekor</p></div>' +
+      '<a class="tap shrink-0 text-sm font-bold text-sirip underline underline-offset-4" data-track="wa_hero_tag" data-item="' + esc(h.nama) + '" target="_blank" rel="noopener" href="' + waLink('Halo Fin Betta Farm, saya mau pesan ' + h.nama + ' (' + rupiah(h.harga) + '). Apakah masih ada?') + '">Pesan</a>';
+    tag.hidden = false;
   }
 
   function parseCsv(text) {
