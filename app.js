@@ -58,7 +58,6 @@
     var list = items.filter(function (i) { return aktif === 'Semua' || i.jenis === aktif; });
     grid.innerHTML = list.map(function (i) {
       var s = status(i.stok);
-      var level = Math.max(8, Math.min(100, (i.stok / C.stokPenuh) * 100));
       var habis = i.stok <= 0;
       var pesan = habis
         ? 'Halo Fin Betta Farm, ' + i.nama + ' kapan ada lagi?'
@@ -68,7 +67,6 @@
           (i.foto
             ? '<img class="jar-photo" src="' + esc(i.foto) + '" alt="' + esc(i.nama) + '" loading="lazy" width="720" height="720">'
             : fishSvg(i.warna || '#D9567F')) +
-          '<div class="jar-water" style="height:' + (habis ? 6 : Math.round(level * 0.6)) + '%"></div>' +
           '<span class="jar-level">' + (habis ? 'kosong' : i.stok + ' ekor') + '</span>' +
         '</div>' +
         '<div class="mt-4">' +
