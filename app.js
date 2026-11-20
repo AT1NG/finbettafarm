@@ -121,7 +121,7 @@
     cf.list = list.slice(0, 9);
     if (!cf.list.length) return;
     cf.el.innerHTML = cf.list.map(function (i, k) {
-      return '<button type="button" class="cf-card" data-i="' + k + '" aria-label="Lihat ' + esc(i.nama) + '"><img src="' + esc(i.foto) + '" alt="' + esc(i.nama) + '" width="720" height="495"' + (k === 0 ? ' fetchpriority="high"' : ' loading="lazy"') + '></button>';
+      return '<button type="button" class="cf-card" data-i="' + k + '" aria-label="Lihat ' + esc(i.nama) + '"><img src="' + esc(i.foto) + '" alt="' + esc(i.nama) + '" width="720" height="540"' + (k === 0 ? ' fetchpriority="high"' : ' loading="lazy"') + '></button>';
     }).join('');
     cf.aktif = 0; layout(); mulai();
   }
@@ -133,12 +133,12 @@
       var d = k - cf.aktif;
       if (d > n / 2) d -= n; if (d < -n / 2) d += n;
       var a = Math.abs(d), s = d < 0 ? -1 : 1;
-      var x = a === 0 ? 0 : s * (w * 0.62 + (a - 1) * w * 0.3);
-      var sc = a === 0 ? 1 : Math.max(0.4, 0.66 - (a - 1) * 0.1);
+      var x = a === 0 ? 0 : s * (w * 0.58 + (a - 1) * w * 0.22);
+      var sc = a === 0 ? 1 : Math.max(0.4, 0.68 - (a - 1) * 0.12);
       var rot = a === 0 ? 0 : -s * 38;
       c.style.transform = 'translate(-50%,-50%) translateX(' + x + 'px) rotateY(' + rot + 'deg) scale(' + sc + ')';
       c.style.zIndex = String(20 - a);
-      c.style.opacity = a > 3 ? '0' : String(1 - Math.max(0, a - 1) * 0.22);
+      c.style.opacity = a > 2 ? '0' : String(1 - Math.max(0, a - 1) * 0.35);
       c.style.filter = a === 0 ? 'none' : 'saturate(.85) brightness(.92)';
       c.classList.toggle('is-active', a === 0);
       c.tabIndex = a === 0 ? -1 : 0;
@@ -159,6 +159,17 @@
     var x0 = null;
     cf.el.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
     cf.el.addEventListener('pointerup', function (e) { if (x0 === null) return; var dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) { geser(cf.aktif + (dx < 0 ? 1 : -1)); mulai(); } });
+    // Scroll mouse di atas rak memutar foto (dibatasi agar tidak terlalu cepat)
+    var jedaRoda = 0;
+    cf.el.addEventListener('wheel', function (e) {
+      var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (Math.abs(d) < 4) return;
+      e.preventDefault();
+      var now = Date.now();
+      if (now - jedaRoda < 450) return;
+      jedaRoda = now;
+      geser(cf.aktif + (d > 0 ? 1 : -1));
+    }, { passive: false });
     window.addEventListener('resize', layout);
     document.addEventListener('visibilitychange', function () { document.hidden ? henti() : mulai(); });
   }

@@ -56,38 +56,36 @@
 
   <main>
     <!-- Hero -->
-    <section class="pt-10 md:pt-16">
-      <div class="mx-auto grid max-w-content items-end gap-6 px-5 md:grid-cols-[1.15fr_1fr] md:gap-14">
-        <h1 class="text-[2.5rem] font-bold leading-[1.06] sm:text-5xl lg:text-[3.5rem]">Cupang sehat dari Jatinangor. Cek stoknya dulu, baru chat.</h1>
-        <div>
-          <p class="text-lg leading-relaxed text-laut/80">Fin Betta Farm membudidayakan cupang halfmoon, plakat, double tail, dan crowntail. Lihat varian yang masih ada beserta harganya, lalu pesan lewat WhatsApp. Kami melayani Kota Bandung dan sekitarnya.</p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="#katalog" class="btn bg-sirip text-white hover:bg-[#9E3F31]" data-track="cta_hero_stok">Lihat stok hari ini</a>
-            <a data-wa data-track="wa_hero" href="#" class="btn-ghost">Chat WhatsApp</a>
-          </div>
+    <section class="mx-auto grid max-w-content items-center gap-10 px-5 pb-16 pt-8 md:grid-cols-[1fr_1.08fr] md:gap-12 md:pt-14">
+      <div>
+        <h1 class="text-[2.5rem] font-bold leading-[1.06] sm:text-5xl lg:text-[3.4rem]">Cupang sehat dari Jatinangor. Cek stoknya dulu, baru chat.</h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-laut/80">Fin Betta Farm membudidayakan cupang halfmoon, plakat, double tail, dan crowntail. Lihat varian yang masih ada beserta harganya, lalu pesan lewat WhatsApp. Kami melayani Kota Bandung dan sekitarnya.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#katalog" class="btn bg-sirip text-white hover:bg-[#9E3F31]" data-track="cta_hero_stok">Lihat stok hari ini</a>
+          <a data-wa data-track="wa_hero" href="#" class="btn-ghost">Chat WhatsApp</a>
         </div>
+        <dl class="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-laut/15 pt-6 text-sm">
+          <div><dt class="text-laut/70">Harga per ekor</dt><dd class="mt-1 font-bold">Rp15rb sampai Rp50rb</dd></div>
+          <div><dt class="text-laut/70">Lokasi budidaya</dt><dd class="mt-1 font-bold">Jatinangor</dd></div>
+          <div><dt class="text-laut/70">Area layanan</dt><dd class="mt-1 font-bold">Bandung dan sekitarnya</dd></div>
+        </dl>
+        <p id="garansi" class="mt-6 max-w-lg rounded-2xl border border-laut/15 bg-white px-4 py-3 text-sm font-semibold" hidden></p>
       </div>
 
       <!-- Rak putar: ikan yang tersedia hari ini -->
-      <div class="cf-band mt-10 md:mt-14">
+      <div class="cf-band order-first md:order-none">
         <div id="cf" class="cf" role="region" aria-roledescription="carousel" aria-label="Cupang yang tersedia hari ini">
           <button type="button" class="cf-card is-active" data-i="0" style="transform:translate(-50%,-50%)" tabindex="-1" aria-hidden="true">
-            <img src="/foto/halfmoon-orange-dragon.webp" alt="" width="720" height="405" fetchpriority="high">
+            <img src="/foto/halfmoon-orange-dragon.webp" alt="" width="720" height="540" fetchpriority="high">
           </button>
         </div>
-        <div class="mx-auto flex max-w-content items-center justify-between gap-4 px-5 pb-12 pt-6">
+        <div class="flex items-center justify-between gap-3 px-4 pb-5 pt-1">
           <button type="button" id="cf-prev" class="cf-nav" aria-label="Ikan sebelumnya">&larr;</button>
           <div id="hero-tag" class="min-w-0 text-center" aria-live="polite">
             <p class="font-bold">Halfmoon Orange Dragon</p>
           </div>
           <button type="button" id="cf-next" class="cf-nav" aria-label="Ikan berikutnya">&rarr;</button>
         </div>
-        <dl class="mx-auto grid max-w-content grid-cols-3 gap-4 border-t border-laut/10 px-5 py-6 text-sm">
-          <div><dt class="text-laut/70">Harga per ekor</dt><dd class="mt-1 font-bold">Rp15rb sampai Rp50rb</dd></div>
-          <div><dt class="text-laut/70">Lokasi budidaya</dt><dd class="mt-1 font-bold">Jatinangor</dd></div>
-          <div><dt class="text-laut/70">Area layanan</dt><dd class="mt-1 font-bold">Bandung dan sekitarnya</dd></div>
-        </dl>
-        <p id="garansi" class="mx-auto mb-6 max-w-lg rounded-2xl border border-laut/15 bg-white px-4 py-3 text-center text-sm font-semibold" hidden></p>
       </div>
     </section>
 
